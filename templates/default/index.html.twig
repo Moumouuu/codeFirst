@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+{% if app.user %}
+    <h1>Bonjour {{app.user.name}}, votre pays : {{app.user.country}}</h1>
+    <a href="{{ path('app_logout') }}">Logout</a>
+    <a href="{{ path('app_category_new') }}">Add Category</a>
+    <a href="{{ path('app_country_new') }}">Add Message</a>
+    <a href="{{ path('app_country_new') }}">Add Country</a>
+    <h2>Mes messages : </h2>
+{% for message in app.user.messages %}
+    <ul>
+        <li>
+    {{message.body}}
+        </li>
+    </ul>
+{% endfor %}
+
+<h2>Mes pays : </h2>
+{% for country in countries %}
+    <ul>
+        <li>
+    {{country}}
+        </li>
+    </ul>
+{% endfor %}
+
+<h2>Mes Catégories : </h2>
+{% for category in categories %}
+    <ul>
+        <li>
+    {{category}}
+        </li>
+    </ul>
+{% endfor %}
+    {% else %}
+    <h1>Bonjour</h1>
+    <a href="{{ path('app_login') }}">Login</a>
+    <a href="{{ path('app_register') }}">Register</a>
+
+{% endif %}
+
+
+
+{% endblock %}
